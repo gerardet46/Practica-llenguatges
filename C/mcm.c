@@ -92,5 +92,3 @@ int main()
 	}
 	return 0;
 }
-// tcc -run mcm.c
-// dmc "arxius/mcm.c"
