@@ -2,7 +2,7 @@
 
 int main() {
     char n = '\0';
-    system("color a");
+    //system("color a"); // canviar color de consola (no se si funciona per MAC)
     while (0 == 0) {
         //printf("\e[1;1H\e[2J"); // clear console
         system("cls");
@@ -32,7 +32,6 @@ int main() {
         else { system("cls"); printf("Entrada incorrecta"); n = getch(); }
     }
     system("cls");
-    system("color 7");
+    //system("color 7"); // color de consola standart
     return 0;
 }
-// tcc -run "ascii chars.c"
