@@ -42,7 +42,7 @@ int main()
 	while (sortir) {
 		system("cls");
 
-		printf("Escriu mode:\n1 => MinCD\n2 => MCM\n3 => MCD\n4 => si x es cosi\n5 => Divisors de x\n6 => Sortir\n");
+		printf("Escriu mode:\n1 => MinCD\n2 => MCM\n3 => MCD\n4 => si x es cos%c\n5 => Divisors de x\n6 => Sortir\n", 161);
 		char a = getch();
 		system("cls");
 		switch (a) {
@@ -80,7 +80,7 @@ int main()
 				int a;
 				printf("Escriu el numero: ");
 				scanf("%d", &a);
-				printf("-----------------------------\n%d%s es cosi", a, primo(a) ? "NO");
+				printf("-----------------------------\n%d%s es cos%c", a, primo(a) ? " NO" : "", 161);
 				getch();
 				break;
 			}
