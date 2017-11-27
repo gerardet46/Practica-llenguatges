@@ -42,7 +42,7 @@ int main()
 	while (sortir) {
 		system("cls");
 
-		printf("Escriu mode:\n1 => MinCD\n2 => MCM\n3 => MCD\n4 => si x es cosi\n5 => Sortir\n");
+		printf("Escriu mode:\n1 => MinCD\n2 => MCM\n3 => MCD\n4 => si x es cosi\n5 => Divisors de x\n6 => Sortir\n");
 		char a = getch();
 		system("cls");
 		switch (a) {
@@ -85,6 +85,25 @@ int main()
 				break;
 			}
 			case '5': {
+				int a;
+				printf("Escriu el numero: ");
+				scanf("%d", &a);
+				int primer = 1;
+				while (a > 1) {
+					if (!primer) printf("·");
+					for (int i = 2; i <= a; i++)
+						if (a % i == 0) {
+							printf("%d", i);
+							a /= i;
+							break;
+						}
+
+					if (primer) primer = 0;
+				}
+				getch();
+				break;
+			}
+			case '6': {
 				sortir = 0;
 				break;
 			}
