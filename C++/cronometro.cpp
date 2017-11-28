@@ -61,7 +61,7 @@ int main() {
             while (true) {
                 this_thread::sleep_for(chrono::seconds(1));
                 cout << tempo();
-                if (h == m == s == 0) {
+                if (h == 0 && m == 0 && s == 0) {
                     cout << "\nHa acabat el temps (sortint en 4s)";
                     this_thread::sleep_for(chrono::seconds(4));
                     break;
