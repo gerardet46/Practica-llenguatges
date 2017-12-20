@@ -2,13 +2,15 @@
 #include <string>
 #include <stdlib.h>
 #include <conio.h>
+#include <thread>
+#include <chrono>
 
 #define SPACE 32
 
 using namespace std;
 
 int vides = 0;
-string toup(string inp) { // UPPER CASE
+string toup(string inp) {
 	string r = "";
 	for (int i = 0; i < inp.length(); i++) {
 		if (inp.at(i) < 97) r += inp.at(i);
@@ -24,10 +26,14 @@ string plenar(string input, string dashed, char pl) {
 			dashed.at(i) = pl;
 			hiha = true;
 		}
-	if (!hiha) vides--;
+	system("cls");
+	if (!hiha) {
+		vides--;
+		cout << "Has fallat!!!";
+	} else cout << "Molt be!!!";
 	return dashed;
 }
-bool str_include(string input, char c) { // SI UN STRING CONTÉ UN CARÀCTER EN ESPECÍFIC
+bool str_include(string input, char c) {
 	for (int i = 0; i < input.length(); i++)
 		if (input.at(i) == c) return true;
 	return false;
@@ -69,6 +75,7 @@ int main() {
 				cout << g << "\n\nEsriu el caracter: ";
 				char c = _getch();
 				g = plenar(p, g, c);
+				this_thread::sleep_for(chrono::milliseconds(1500));
 			} else if (mode == '2') {
 				cout << g << "\n\nEscriu la paraula/frase: ";
 				string ne = "";
@@ -83,7 +90,7 @@ int main() {
 		if (perdut) cout << "T'has quedat sense vides!!!!!\n";
 		else cout << "Enhorabona!!!!!";
 
-		cout << "\nLa paraula era " << p << "\n\n1 => Sortir\nQualsevol altre caracter => Fer-ne una altra";
+		cout << "\nLa paraula/frase era " << p << "\n\n1 => Sortir\nQualsevol altre caracter => Fer-ne una altra";
 		char mod = _getch();
 		if (mod == '1') break;
 	}
