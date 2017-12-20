@@ -8,7 +8,7 @@
 using namespace std;
 
 int vides = 0;
-string toup(string inp) {
+string toup(string inp) { // UPPER CASE
 	string r = "";
 	for (int i = 0; i < inp.length(); i++) {
 		if (inp.at(i) < 97) r += inp.at(i);
@@ -27,7 +27,7 @@ string plenar(string input, string dashed, char pl) {
 	if (!hiha) vides--;
 	return dashed;
 }
-bool str_include(string input, char c) {
+bool str_include(string input, char c) { // SI UN STRING CONTÉ UN CARÀCTER EN ESPECÍFIC
 	for (int i = 0; i < input.length(); i++)
 		if (input.at(i) == c) return true;
 	return false;
