@@ -97,7 +97,7 @@ int main() {
 		if (perdut) cout << "T'has quedat sense vides!!!!!\n";
 		else cout << "Enhorabona!!!!!";
 
-		cout << "\nLa paraula/frase era " << "\n\n1 => Sortir\nQualsevol altre caracter => Fer-ne una altra";
+		cout << "\nLa paraula/frase era " << p << "\n\n1 => Sortir\nQualsevol altre caracter => Fer-ne una altra";
 		char mod = _getch();
 		if (mod == '1') break;
 	}
