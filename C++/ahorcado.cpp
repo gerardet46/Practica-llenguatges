@@ -10,6 +10,7 @@
 using namespace std;
 
 int vides = 0;
+string errors = "";
 string toup(string inp) {
 	string r = "";
 	for (int i = 0; i < inp.length(); i++) {
@@ -29,6 +30,11 @@ string plenar(string input, string dashed, char pl) {
 	system("cls");
 	if (!hiha) {
 		vides--;
+
+		if (errors == "") errors = "Errades => ";
+		else errors += ", ";
+		errors += pl; 
+		
 		cout << "Has fallat!!!";
 	} else cout << "Molt be!!!";
 	return dashed;
@@ -42,6 +48,7 @@ int main() {
 	while (true) {
 		system("cls");
 
+		errors = "";
 		string p = "", g = "", vid = "";
 
 		cout << "Introdueix paraula/frase, J1: ";
@@ -67,7 +74,7 @@ int main() {
 				break;
 			}
 			system("cls");
-			cout << g << "\n\nVides: " << vides << "\n\n1 => Escriure caracter\n2 => Escriure paraula/frase";
+			cout << g << "\n\nVides => " << vides << "\n" << errors << "\n\n1 => Escriure caracter\n2 => Escriure paraula/frase";
 			char mode = _getch();
 
 			system("cls");
@@ -90,7 +97,7 @@ int main() {
 		if (perdut) cout << "T'has quedat sense vides!!!!!\n";
 		else cout << "Enhorabona!!!!!";
 
-		cout << "\nLa paraula/frase era " << p << "\n\n1 => Sortir\nQualsevol altre caracter => Fer-ne una altra";
+		cout << "\nLa paraula/frase era " << "\n\n1 => Sortir\nQualsevol altre caracter => Fer-ne una altra";
 		char mod = _getch();
 		if (mod == '1') break;
 	}
