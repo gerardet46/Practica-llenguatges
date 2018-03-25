@@ -14,10 +14,8 @@ namespace WinForms_CS
         public float X;
         public float Y;
     }
-    public enum SIMBOL { POSITIU = 0, NEGATIU = 1 };
     public partial class frmpol : Form
     {
-        const double PI = Math.PI;
         float sin(float deg) // Tenint en compte la y
         {
             bool neg = true;
@@ -55,7 +53,7 @@ namespace WinForms_CS
         float r = 200;
         static float thick = 2;
         Pen cercle = new Pen(Color.DarkRed, thick), poligon = new Pen(Color.Green, thick);
-
+        
         public frmpol()
         {
             InitializeComponent();
@@ -66,18 +64,19 @@ namespace WinForms_CS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Size = new Size(w, h);
             this.Location = new Point(0, 0);
-            radi.Maximum = gr.Height / 2 - 25;
+            radi.Maximum = (Height - panel1.Height - 20) / 2 - 25;
 
             this.LocationChanged += (object s, EventArgs e) => this.Location = new Point(0, 0);
+            this.Paint += paint;
 
-            rbinscrit.CheckedChanged += (object s, EventArgs e) => gr.Refresh();
-            rbcircuns.CheckedChanged += (object s, EventArgs e) => gr.Refresh();
-            rbdos.CheckedChanged += (object s, EventArgs e) => gr.Refresh();
+            rbinscrit.CheckedChanged += (object s, EventArgs e) => Refresh();
+            rbcircuns.CheckedChanged += (object s, EventArgs e) => Refresh();
+            rbdos.CheckedChanged += (object s, EventArgs e) => Refresh();
             rbinfinit.CheckedChanged += (object s, EventArgs e) =>
             {
                 if (rbinfinit.Checked) tbcostats.Maximum = 15;
                 else tbcostats.Maximum = 25;
-                gr.Refresh();
+                Refresh();
             };
 
             clcercle.Click += delegate (object s, EventArgs e)
@@ -87,7 +86,7 @@ namespace WinForms_CS
                   {
                       cercle = new Pen(cd.Color, thick);
                       clcercle.BackColor = cd.Color;
-                      gr.Refresh();
+                      Refresh();
                   }
               };
             clpoligon.Click += delegate (object s, EventArgs e)
@@ -97,23 +96,23 @@ namespace WinForms_CS
                 {
                     poligon = new Pen(cd.Color, thick);
                     clpoligon.BackColor = cd.Color;
-                    gr.Refresh();
+                    Refresh();
                 }
             };
-            tbcostats.Scroll += (object sender, EventArgs e) => gr.Refresh();
-            radi.Scroll += (object sender, EventArgs e) => gr.Refresh();
+            tbcostats.Scroll += (object sender, EventArgs e) => Refresh();
+            radi.Scroll += (object sender, EventArgs e) => Refresh();
         }
 
-        private void gr_Paint(object sender, PaintEventArgs e)
-        {          
-            int w = gr.Width, h = gr.Height;
-            float cx = w/2, cy = h / 2;
-            radi.Maximum = h / 2 - 25;
+        private void paint(object sender, PaintEventArgs e)
+        {
+            int w = Width, h = this.Height - panel1.Height - 25;
+            float cx = w/2, cy = h / 2 + panel1.Height;
+            radi.Maximum = h / 2 - 30;
 
             r = radi.Value;
             if (tbcostats.Value == 3 && !rbinscrit.Checked)
             {
-                cy = h - r - 12.5f;
+                cy = h - r + 30;
                 radi.Maximum = h / 3 - 25;
             }
             int n = tbcostats.Value;

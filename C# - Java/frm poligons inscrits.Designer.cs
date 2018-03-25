@@ -31,9 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbcostats = new System.Windows.Forms.Label();
             this.tbcostats = new System.Windows.Forms.TrackBar();
-            this.separador3 = new WinForms_CS.separador();
-            this.separador2 = new WinForms_CS.separador();
-            this.separador1 = new WinForms_CS.separador();
             this.clpoligon = new System.Windows.Forms.Panel();
             this.clcercle = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,8 +42,10 @@
             this.rbinscrit = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.radi = new System.Windows.Forms.TrackBar();
-            this.gr = new System.Windows.Forms.Panel();
             this.separador4 = new WinForms_CS.separador();
+            this.separador3 = new WinForms_CS.separador();
+            this.separador2 = new WinForms_CS.separador();
+            this.separador1 = new WinForms_CS.separador();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbcostats)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -55,6 +54,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.BurlyWood;
             this.panel1.Controls.Add(this.lbcostats);
             this.panel1.Controls.Add(this.tbcostats);
             this.panel1.Controls.Add(this.separador3);
@@ -91,36 +91,6 @@
             this.tbcostats.Size = new System.Drawing.Size(388, 56);
             this.tbcostats.TabIndex = 3;
             this.tbcostats.Value = 3;
-            // 
-            // separador3
-            // 
-            this.separador3.BackColor = System.Drawing.Color.Black;
-            this.separador3.Grosor = 2;
-            this.separador3.Location = new System.Drawing.Point(346, 0);
-            this.separador3.Name = "separador3";
-            this.separador3.Size = new System.Drawing.Size(2, 100);
-            this.separador3.TabIndex = 1;
-            this.separador3.Tipus = WinForms_CS.separador.TIPUS.VERTICAL;
-            // 
-            // separador2
-            // 
-            this.separador2.BackColor = System.Drawing.Color.Black;
-            this.separador2.Grosor = 2;
-            this.separador2.Location = new System.Drawing.Point(1242, 0);
-            this.separador2.Name = "separador2";
-            this.separador2.Size = new System.Drawing.Size(2, 100);
-            this.separador2.TabIndex = 1;
-            this.separador2.Tipus = WinForms_CS.separador.TIPUS.VERTICAL;
-            // 
-            // separador1
-            // 
-            this.separador1.BackColor = System.Drawing.Color.Black;
-            this.separador1.Grosor = 2;
-            this.separador1.Location = new System.Drawing.Point(830, 2);
-            this.separador1.Name = "separador1";
-            this.separador1.Size = new System.Drawing.Size(2, 100);
-            this.separador1.TabIndex = 0;
-            this.separador1.Tipus = WinForms_CS.separador.TIPUS.VERTICAL;
             // 
             // clpoligon
             // 
@@ -164,16 +134,17 @@
             this.groupBox1.Controls.Add(this.rbdos);
             this.groupBox1.Controls.Add(this.rbcircuns);
             this.groupBox1.Controls.Add(this.rbinscrit);
-            this.groupBox1.Location = new System.Drawing.Point(380, 0);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox1.Location = new System.Drawing.Point(346, -16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(444, 100);
+            this.groupBox1.Size = new System.Drawing.Size(486, 116);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
             // rbinfinit
             // 
             this.rbinfinit.AutoSize = true;
-            this.rbinfinit.Location = new System.Drawing.Point(219, 54);
+            this.rbinfinit.Location = new System.Drawing.Point(213, 67);
             this.rbinfinit.Name = "rbinfinit";
             this.rbinfinit.Size = new System.Drawing.Size(163, 36);
             this.rbinfinit.TabIndex = 5;
@@ -183,7 +154,7 @@
             // rbdos
             // 
             this.rbdos.AutoSize = true;
-            this.rbdos.Location = new System.Drawing.Point(219, 12);
+            this.rbdos.Location = new System.Drawing.Point(213, 25);
             this.rbdos.Name = "rbdos";
             this.rbdos.Size = new System.Drawing.Size(195, 36);
             this.rbdos.TabIndex = 4;
@@ -193,7 +164,7 @@
             // rbcircuns
             // 
             this.rbcircuns.AutoSize = true;
-            this.rbcircuns.Location = new System.Drawing.Point(14, 54);
+            this.rbcircuns.Location = new System.Drawing.Point(8, 67);
             this.rbcircuns.Name = "rbcircuns";
             this.rbcircuns.Size = new System.Drawing.Size(147, 36);
             this.rbcircuns.TabIndex = 3;
@@ -204,7 +175,7 @@
             // 
             this.rbinscrit.AutoSize = true;
             this.rbinscrit.Checked = true;
-            this.rbinscrit.Location = new System.Drawing.Point(14, 12);
+            this.rbinscrit.Location = new System.Drawing.Point(8, 25);
             this.rbinscrit.Name = "rbinscrit";
             this.rbinscrit.Size = new System.Drawing.Size(99, 36);
             this.rbinscrit.TabIndex = 2;
@@ -231,16 +202,6 @@
             this.radi.TabIndex = 0;
             this.radi.Value = 200;
             // 
-            // gr
-            // 
-            this.gr.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.gr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gr.Location = new System.Drawing.Point(0, 100);
-            this.gr.Name = "gr";
-            this.gr.Size = new System.Drawing.Size(1547, 342);
-            this.gr.TabIndex = 1;
-            this.gr.Paint += new System.Windows.Forms.PaintEventHandler(this.gr_Paint);
-            // 
             // separador4
             // 
             this.separador4.BackColor = System.Drawing.Color.Black;
@@ -252,14 +213,43 @@
             this.separador4.TabIndex = 2;
             this.separador4.Tipus = WinForms_CS.separador.TIPUS.HORITZONTAL;
             // 
+            // separador3
+            // 
+            this.separador3.BackColor = System.Drawing.Color.Black;
+            this.separador3.Grosor = 2;
+            this.separador3.Location = new System.Drawing.Point(346, 0);
+            this.separador3.Name = "separador3";
+            this.separador3.Size = new System.Drawing.Size(2, 100);
+            this.separador3.TabIndex = 1;
+            this.separador3.Tipus = WinForms_CS.separador.TIPUS.VERTICAL;
+            // 
+            // separador2
+            // 
+            this.separador2.BackColor = System.Drawing.Color.Black;
+            this.separador2.Grosor = 2;
+            this.separador2.Location = new System.Drawing.Point(1242, 0);
+            this.separador2.Name = "separador2";
+            this.separador2.Size = new System.Drawing.Size(2, 100);
+            this.separador2.TabIndex = 1;
+            this.separador2.Tipus = WinForms_CS.separador.TIPUS.VERTICAL;
+            // 
+            // separador1
+            // 
+            this.separador1.BackColor = System.Drawing.Color.Black;
+            this.separador1.Grosor = 2;
+            this.separador1.Location = new System.Drawing.Point(830, 2);
+            this.separador1.Name = "separador1";
+            this.separador1.Size = new System.Drawing.Size(2, 100);
+            this.separador1.TabIndex = 0;
+            this.separador1.Tipus = WinForms_CS.separador.TIPUS.VERTICAL;
+            // 
             // frmpol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Wheat;
+            this.BackColor = System.Drawing.Color.Bisque;
             this.ClientSize = new System.Drawing.Size(1547, 442);
             this.Controls.Add(this.separador4);
-            this.Controls.Add(this.gr);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -282,7 +272,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar radi;
-        private System.Windows.Forms.Panel gr;
         private System.Windows.Forms.RadioButton rbdos;
         private System.Windows.Forms.RadioButton rbcircuns;
         private System.Windows.Forms.RadioButton rbinscrit;
