@@ -73,14 +73,14 @@ namespace WinForms_CS
             this.Location = new Point(0, 0);
             radi.Maximum = (Height - panel1.Height - 20) / 2 - 25;
 
-            this.LocationChanged += (object s, EventArgs e) => this.Location = new Point(0, 0);
+            this.LocationChanged += (s, e) => this.Location = new Point(0, 0);
             this.Paint += paint;
             
             // Quan l'usuari fa "click" en "Incrit", "Circunscrit"..., actualitzarà el formulari (this.Refresh())
-            rbinscrit.CheckedChanged += (object s, EventArgs e) => Refresh();
-            rbcircuns.CheckedChanged += (object s, EventArgs e) => Refresh();
-            rbdos.CheckedChanged += (object s, EventArgs e) => Refresh();
-            rbinfinit.CheckedChanged += (object s, EventArgs e) =>
+            rbinscrit.CheckedChanged += (s, e) => Refresh();
+            rbcircuns.CheckedChanged += (s, e) => Refresh();
+            rbdos.CheckedChanged += (s, e) => Refresh();
+            rbinfinit.CheckedChanged += (s, e) =>
             {
                 if (rbinfinit.Checked) tbcostats.Maximum = 15;
                 else tbcostats.Maximum = 25;
@@ -88,7 +88,7 @@ namespace WinForms_CS
             };
             
             // Canvia els colors de les línees
-            clcercle.Click += delegate (object s, EventArgs e)
+            clcercle.Click += (s, e) =>
               {
                   ColorDialog cd = new ColorDialog() { Color = cercle.Color };
                   if (cd.ShowDialog() == DialogResult.OK)
@@ -98,7 +98,7 @@ namespace WinForms_CS
                       Refresh();
                   }
               };
-            clpoligon.Click += delegate (object s, EventArgs e)
+            clpoligon.Click += (s, e) =>
             {
                 ColorDialog cd = new ColorDialog() { Color = poligon.Color };
                 if (cd.ShowDialog() == DialogResult.OK)
@@ -109,8 +109,8 @@ namespace WinForms_CS
                 }
             };
             // Actualitzar el formulari quan l'usuari canvia el radi o nombre de costats
-            tbcostats.Scroll += (object sender, EventArgs e) => Refresh();
-            radi.Scroll += (object sender, EventArgs e) => Refresh();
+            tbcostats.Scroll += (sender, e) => Refresh();
+            radi.Scroll += (sender, e) => Refresh();
         }
         
         // Dibuixa el cercle i polígon regular segons l'opció triada per l'usuari
