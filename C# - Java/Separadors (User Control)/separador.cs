@@ -9,6 +9,7 @@ namespace WinForms_CS
         public enum TIPUS { VERTICAL = 0, HORITZONTAL = 1 }
         public separador()
         {
+            // Quan carrega l'element
             InitializeComponent();
             this.BackColor = Color.Black;
             Grosor = 2;
@@ -20,6 +21,7 @@ namespace WinForms_CS
 
         public int Grosor
         {
+            // Propietat nova: estableix el gruix del separador
             get { return _gr; }
             set
             {
@@ -30,6 +32,7 @@ namespace WinForms_CS
         }
         public TIPUS Tipus
         {
+            // Propietat nova: estableix si el separdor ha d'estar en horitzontal o vertical
             get { return _t; }
             set
             {
@@ -41,6 +44,7 @@ namespace WinForms_CS
 
         protected override void OnSizeChanged(EventArgs e)
         {
+            // Canvia el mètode principal de quan es canvia el tamany (el fixa)
             base.OnSizeChanged(e);
             if (_t == TIPUS.VERTICAL) this.Width = _gr;
             else this.Height = _gr;
