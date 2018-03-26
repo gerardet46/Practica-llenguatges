@@ -1,6 +1,6 @@
 ﻿namespace WinForms_CS
 {
-    partial class frmrellotge_analògic
+    partial class frmrellotge_analogic
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@
             this.separador1.TabIndex = 1;
             this.separador1.Tipus = WinForms_CS.separador.TIPUS.HORITZONTAL;
             // 
-            // frmrellotge_analògic
+            // frmrellotge_analogic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
