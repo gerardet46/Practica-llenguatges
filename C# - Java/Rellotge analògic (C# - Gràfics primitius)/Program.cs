@@ -13,7 +13,7 @@ namespace WinForms_CS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmrellotge_analògic());
+            Application.Run(new frmrellotge_analogic());
         }
     }
 }
