@@ -57,8 +57,7 @@ int main() {
 		codi = simplificar(codi); // Ignoram caràcters que no són "<>+-.,[]"
 		
 		cells.fill(0); // Plenam les cel·les amb zeros
-
-		int ptr = 0;
+		ptr = 0;
 
 		try { // Si es genera un error, hem de sortir de tota la funció recursiva, per això, llançarem excepcions per aturar-les
 			if ((e = error(codi)) != "ok") cout << e; // Massa tancaments o obriments de bucle
