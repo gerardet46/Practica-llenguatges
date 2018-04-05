@@ -98,7 +98,10 @@ void interpretar(string c, RETURN ret) {
 			++cells.at(ptr);
 			if (ESTRICTE && cells.at(ptr) > 255) throw new exception(("\nError durant l'execucio: S'ha intentat asignar mes d'1 byte (255 en decimal) de memoria a la cel.la " + to_string(ptr + 1)).c_str());
 		}
-		if (ch == '-') --cells.at(ptr); // Restam 1 a la cel·la actual
+		if (ch == '-') { // Restam 1 a la cel·la actual
+			--cells.at(ptr);
+			if (ESTRICTE && cells.at(ptr) < 0) throw new exception(("\nError durant l'execucio: S'ha intentat asignar un valor negatiu per char [0,256) a la cel·la " + to_string(ptr + 1)).c_str());
+		}
 		if (ch == '.') { // Imprimim la cel·la actual com a char i no int
 			out += (char)cells.at(ptr);
 			cout << (char)cells.at(ptr);
