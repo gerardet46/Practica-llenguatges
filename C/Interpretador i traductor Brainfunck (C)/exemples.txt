@@ -16,17 +16,17 @@ Hola Mon:
 [
   >+++++++>+++++++++++>+++>+<<<<-
 ] Bucle: inicialitza posicions d'(1) a (4) amb valors ASCII propers als necessitats
-(1) per majúscules 110; (2) per minúscules 70; (3) per l'espai 32; (4) per nova línia 10
+(1) per majÃºscules 110; (2) per minÃºscules 70; (3) per l'espai 32; (4) per nova lÃ­nia 10
 >++. escriu 'H'
 >+. escriu 'o'
 ---. 'l'
 -----------. 'a'
 >++. espai
 <<+++++. 'M'
->++++++++++++++. 'o' (sense accent per limitacions tècniques)
+>++++++++++++++. 'o' (sense accent per limitacions tÃ¨cniques)
 -. 'n'
 >+. '!'
->. nova línia^
+>. nova lÃ­nia^
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Fibonacci:
@@ -37,7 +37,7 @@ Fibonacci:
             [>+<-[>+<-[>+<-[>[-]>+>+<<<-[>+<-]]]]]]]]]]]+>>>
     ]<<<
 ]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Quadrats perfectes:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ++++[>+++++<-]>[<+++++>-]+<+[
@@ -48,7 +48,7 @@ Quadrats perfectes:
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Nombre e (mitjançant càlculs):
+Nombre e (mitjanÃ§ant cÃ lculs):
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 >>>>++>+>++>+>>++<<[
     --[+[+++<<<<--]++>>>>--]+[<<<<]
