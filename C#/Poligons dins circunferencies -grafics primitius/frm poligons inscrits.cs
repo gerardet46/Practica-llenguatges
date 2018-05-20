@@ -19,34 +19,9 @@ namespace WinForms_CS
     public partial class frmpol : Form
     {
         // Funcions personalitzades (sin(10) > 0, no com es mostra aquí, que sur en negatiu) dels sinus i cosinus
-        float sin(float deg) // Tenint en compte la y
-        {
-            bool neg = true;
+        float sin(float deg) => -(float)Math.Sin(deg * Math.PI / 180); // Posam "-" per invertir el signe del sinus
+        float cos(float deg) => (float)Math.Cos(deg * Math.PI / 180);
 
-            if (deg == 0 || deg == 180) return 0;
-            if (deg == 90) return -1;
-            if (deg == 270) return 1;
-
-            if (deg > 180) neg = false;
-            if (deg >= 180) deg -= 180;
-
-            float r = (float)Math.Sin(deg * Math.PI / 180 /* a radians */);
-            return neg ? -r : r;
-        }
-        float cos(float deg) // Tenint en compte la x
-        {
-            bool neg = true;
-
-            if (deg == 0) return 1;
-            if (deg == 90 || deg == 270) return 0;
-            if (deg == 180) return -1;
-
-            if (deg < 180) neg = false;
-            if (deg > 180) deg -= 180;
-
-            float r = (float)Math.Cos(deg * Math.PI / 180 /* a radians */);
-            return neg ? -r : r;
-        }
         // Simplificar angles donat un interval (1260º -> 900º -> 540º -> 180º)
         float simplificar(float deg, int interval = 360)
         {
