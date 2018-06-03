@@ -9,8 +9,8 @@ namespace WinForms_CS
         public serp_dialeg()
         {
             InitializeComponent();
-            if (!File.Exists("1j.txt") || new Regex(@"^[0-9]+$").IsMatch(File.ReadAllText("1j.txt"))) File.WriteAllText("1j.txt", "0");
-            if (!File.Exists("2j.txt") || new Regex(@"^[0-9]+$").IsMatch(File.ReadAllText("2j.txt"))) File.WriteAllText("2j.txt", "0");
+            if (!File.Exists("1j.txt") || !new Regex(@"^[0-9]+$").IsMatch(File.ReadAllText("1j.txt"))) File.WriteAllText("1j.txt", "0");
+            if (!File.Exists("2j.txt") || !new Regex(@"^[0-9]+$").IsMatch(File.ReadAllText("2j.txt"))) File.WriteAllText("2j.txt", "0");
 
             btnsol.Click += (s, e) =>
             {

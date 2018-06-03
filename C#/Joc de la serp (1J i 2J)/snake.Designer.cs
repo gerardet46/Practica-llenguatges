@@ -56,7 +56,7 @@
             // 
             this.btnreiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnreiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnreiniciar.Location = new System.Drawing.Point(21, 203);
+            this.btnreiniciar.Location = new System.Drawing.Point(21, 233);
             this.btnreiniciar.Name = "btnreiniciar";
             this.btnreiniciar.Size = new System.Drawing.Size(354, 63);
             this.btnreiniciar.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             this.btnplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnplay.Location = new System.Drawing.Point(21, 134);
+            this.btnplay.Location = new System.Drawing.Point(21, 164);
             this.btnplay.Name = "btnplay";
             this.btnplay.Size = new System.Drawing.Size(354, 63);
             this.btnplay.TabIndex = 1;
@@ -80,7 +80,7 @@
             this.lbdades.Font = new System.Drawing.Font("Segoe UI", 24F);
             this.lbdades.Location = new System.Drawing.Point(6, 9);
             this.lbdades.Name = "lbdades";
-            this.lbdades.Size = new System.Drawing.Size(366, 70);
+            this.lbdades.Size = new System.Drawing.Size(366, 152);
             this.lbdades.TabIndex = 0;
             this.lbdades.Text = "Rècord: 0";
             this.lbdades.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -97,7 +97,7 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(9, 269);
+            this.label1.Location = new System.Drawing.Point(9, 299);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(366, 70);
             this.label1.TabIndex = 3;
@@ -109,7 +109,7 @@
             this.lbrec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbrec.Font = new System.Drawing.Font("Segoe UI", 34F);
             this.lbrec.ForeColor = System.Drawing.Color.Gold;
-            this.lbrec.Location = new System.Drawing.Point(9, 365);
+            this.lbrec.Location = new System.Drawing.Point(9, 395);
             this.lbrec.Name = "lbrec";
             this.lbrec.Size = new System.Drawing.Size(366, 112);
             this.lbrec.TabIndex = 4;

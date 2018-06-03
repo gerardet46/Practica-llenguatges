@@ -23,12 +23,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbrec = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnreiniciar = new System.Windows.Forms.Button();
             this.btnplay = new System.Windows.Forms.Button();
             this.lbdades = new System.Windows.Forms.Label();
             this.pnjoc = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbrec = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,11 +46,33 @@
             this.panel1.Size = new System.Drawing.Size(387, 513);
             this.panel1.TabIndex = 0;
             // 
+            // lbrec
+            // 
+            this.lbrec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbrec.Font = new System.Drawing.Font("Segoe UI", 34F);
+            this.lbrec.ForeColor = System.Drawing.Color.Gold;
+            this.lbrec.Location = new System.Drawing.Point(12, 390);
+            this.lbrec.Name = "lbrec";
+            this.lbrec.Size = new System.Drawing.Size(366, 112);
+            this.lbrec.TabIndex = 5;
+            this.lbrec.Text = "Nou Record!!";
+            this.lbrec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(12, 304);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(366, 107);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Groc: WASD\r\nLila: fletxes";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // btnreiniciar
             // 
             this.btnreiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnreiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnreiniciar.Location = new System.Drawing.Point(12, 186);
+            this.btnreiniciar.Location = new System.Drawing.Point(15, 238);
             this.btnreiniciar.Name = "btnreiniciar";
             this.btnreiniciar.Size = new System.Drawing.Size(354, 63);
             this.btnreiniciar.TabIndex = 2;
@@ -61,7 +83,7 @@
             // 
             this.btnplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnplay.Location = new System.Drawing.Point(12, 117);
+            this.btnplay.Location = new System.Drawing.Point(15, 169);
             this.btnplay.Name = "btnplay";
             this.btnplay.Size = new System.Drawing.Size(354, 63);
             this.btnplay.TabIndex = 1;
@@ -74,7 +96,7 @@
             this.lbdades.Font = new System.Drawing.Font("Segoe UI", 24F);
             this.lbdades.Location = new System.Drawing.Point(6, 9);
             this.lbdades.Name = "lbdades";
-            this.lbdades.Size = new System.Drawing.Size(366, 70);
+            this.lbdades.Size = new System.Drawing.Size(366, 157);
             this.lbdades.TabIndex = 0;
             this.lbdades.Text = "Rècord: 0";
             this.lbdades.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -87,28 +109,6 @@
             this.pnjoc.Name = "pnjoc";
             this.pnjoc.Size = new System.Drawing.Size(515, 513);
             this.pnjoc.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(9, 252);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(366, 107);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Groc: WASD\r\nLila: fletxes";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbrec
-            // 
-            this.lbrec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbrec.Font = new System.Drawing.Font("Segoe UI", 34F);
-            this.lbrec.ForeColor = System.Drawing.Color.Gold;
-            this.lbrec.Location = new System.Drawing.Point(9, 338);
-            this.lbrec.Name = "lbrec";
-            this.lbrec.Size = new System.Drawing.Size(366, 112);
-            this.lbrec.TabIndex = 5;
-            this.lbrec.Text = "Nou Record!!";
-            this.lbrec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // snake2
             // 

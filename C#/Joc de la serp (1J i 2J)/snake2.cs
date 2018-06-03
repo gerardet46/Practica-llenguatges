@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace WinForms_CS
 
         List<Point> q = new List<Point>(), q2 = new List<Point>();
         DIR d1 = DIR.DRETA, d2 = DIR.ESQUERRA;
-        bool _mort = false;
+        string ms = "";
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -75,7 +74,7 @@ namespace WinForms_CS
             {
                 t.Stop();
                 File.WriteAllText("2j.txt", record.ToString());
-                if (_mort) MessageBox.Show("Mort!!!");
+                if (ms != "") MessageBox.Show(ms);
             };
             pnjoc.Paint += (s, e) =>
             {
@@ -129,15 +128,23 @@ namespace WinForms_CS
                     case DIR.ADALT: q2.Insert(0, new Point(q2[0].X, q2[0].Y - 1)); break;
                     case DIR.ABAIX: q2.Insert(0, new Point(q2[0].X, q2[0].Y + 1)); break;
                 }
-
-                if (_mort = mort()) Close();
+                bool m1 = false, m2 = false;
+                if (m1 = mort1()) ms = "Serp lila guanya!!!";
+                if (m2 = mort2())
+                {
+                    if (m1) ms = "Empat, heu mort tot dos!!";
+                    else ms = "Serp groga guanya!!!";
+                    Close();
+                    return;
+                }
+                if (m1) Close();
 
                 if (++jugats > record)
                 {
                     lbrec.Visible = true;
                     record = jugats;
                 }
-                lbdades.Text = $"Caselles: {jugats}\nRecord: {record}";
+                lbdades.Text = $"Caselles: {jugats}/{celles * celles / 2 - 14}\nRecord: {record}";
 
                 g.FillRectangle(Brushes.Khaki, q[0].X * ample + pl, q[0].Y * ample + 10, ample, ample);
                 g.FillRectangle(Brushes.Plum, q2[0].X * ample + pl, q2[0].Y * ample + 10, ample, ample);
@@ -156,7 +163,7 @@ namespace WinForms_CS
             return new Point(p, y);
         }
 
-        bool mort() => q[0].X > celles - 1 || q[0].X < 0 || q[0].Y > celles - 1 || q[0].Y < 0 || q.Count(n => n == q[0]) > 1 || q2.Contains(q[0]) ||
-             q2[0].X > celles - 1 || q2[0].X < 0 || q2[0].Y > celles - 1 || q2[0].Y < 0 || q2.Count(n => n == q2[0]) > 1 || q.Contains(q2[0]);
+        bool mort1() => q[0].X > celles - 1 || q[0].X < 0 || q[0].Y > celles - 1 || q[0].Y < 0 || q.Count(n => n == q[0]) > 1 || q2.Contains(q[0]);
+        bool mort2() => q2[0].X > celles - 1 || q2[0].X < 0 || q2[0].Y > celles - 1 || q2[0].Y < 0 || q2.Count(n => n == q2[0]) > 1 || q.Contains(q2[0]);
     }
 }
