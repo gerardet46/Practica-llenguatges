@@ -1,4 +1,4 @@
-﻿namespace WinForms_CS
+namespace WinForms_CS
 {
     partial class snake2
     {
