@@ -32,12 +32,14 @@ namespace WinForms_CS
                     t.Stop();
                 }
             }
+            // Jugador LILA
             else if (keyData == Keys.R) Close();
             else if (keyData == Keys.Up && d2 != DIR.ABAIX) d2 = DIR.ADALT;
             else if (keyData == Keys.Down && d2 != DIR.ADALT) d2 = DIR.ABAIX;
             else if (keyData == Keys.Left && d2 != DIR.DRETA) d2 = DIR.ESQUERRA;
             else if (keyData == Keys.Right && d2 != DIR.ESQUERRA) d2 = DIR.DRETA;
-
+            
+            // Jugador GROC
             else if (keyData == Keys.W && d1 != DIR.ABAIX) d1 = DIR.ADALT;
             else if (keyData == Keys.S && d1 != DIR.ADALT) d1 = DIR.ABAIX;
             else if (keyData == Keys.A && d1 != DIR.DRETA) d1 = DIR.ESQUERRA;
@@ -55,7 +57,7 @@ namespace WinForms_CS
                 q.Add(new Point(7 + i, celles / 2));
                 q2.Add(new Point(celles - 8 - i, celles / 2));
             }
-            q.Reverse();
+            q.Reverse(); // Invertim els punts per intercanviar cap-cua
             q2.Reverse();
 
             KeyPreview = true;
@@ -88,9 +90,10 @@ namespace WinForms_CS
                     if ((p.Y % 2 == 0 && p.X % 2 == 1) || (p.Y % 2 == 1 && p.X % 2 == 0))
                         e.Graphics.FillRectangle(new SolidBrush(cl), p.X * ample + pl, p.Y * ample + 10, ample, ample);
                 }
+                // Jugador GROC
                 foreach (Point qr in q)
                     e.Graphics.FillRectangle(Brushes.Khaki, qr.X * ample + pl, qr.Y * ample + 10, ample, ample);
-
+                // Jugador LILA
                 foreach (Point qr in q2)
                     e.Graphics.FillRectangle(Brushes.Plum, qr.X * ample + pl, qr.Y * ample + 10, ample, ample);
             };
@@ -113,7 +116,8 @@ namespace WinForms_CS
             {
                 Graphics g = pnjoc.CreateGraphics();
                 int pl = pnjoc.Width / 2 - w_tauler / 2 + 2;
-
+                
+                // Afegim el nou cap (cal tenir en compte les dues serps
                 switch (d1)
                 {
                     case DIR.DRETA: q.Insert(0, new Point(q[0].X + 1, q[0].Y)); break;
@@ -139,19 +143,19 @@ namespace WinForms_CS
                 }
                 if (m1) Close();
 
-                if (++jugats > record)
+                if (++jugats > record) // Augmentam el nombre de caselles avançades i comprovam si és un nou record
                 {
                     lbrec.Visible = true;
                     record = jugats;
                 }
                 lbdades.Text = $"Caselles: {jugats}/{celles * celles / 2 - 14}\nRecord: {record}";
-
+                
+                // Pintam els nous caps, però no esborram les cues (se van fent gran a mesura que passa el temps)
                 g.FillRectangle(Brushes.Khaki, q[0].X * ample + pl, q[0].Y * ample + 10, ample, ample);
                 g.FillRectangle(Brushes.Plum, q2[0].X * ample + pl, q2[0].Y * ample + 10, ample, ample);
             };
         }
 
-        int P(Point p) => p.Y * w_tauler + p.X;
         Point I(int p)
         {
             int y = 0;
