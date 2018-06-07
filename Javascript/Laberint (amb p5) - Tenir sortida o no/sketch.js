@@ -2,7 +2,7 @@ let b = "", c = "", max = 30, w = 600 / max, current = null;
 
 function setup() {
 	createCanvas(601,601);
-	background(230); // Posam com a color de fons un gris clar (#)
+	background(230); // Posam com a color de fons un gris clar (#e6e6e6)
 
 	for (let x = 0; x <= max; x++) { // Dibuixam les línees de separació
 		line(0, x * w, 600, x * w);
