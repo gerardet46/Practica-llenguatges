@@ -13,8 +13,8 @@ namespace WinForms_CS
     {
         Point or = new Point(), menjar = new Point(); // Centre i posició del menjar
         Color cl;
-        Timer t = new Timer() { Interval = 60 }; // cada 60 ticks se mourà la serp
-        int w_tauler = 0x0, celles = 40, ample, menjats = 0x0, record = int.Parse(File.ReadAllText("1j.txt"));
+        Timer t = new Timer() { Interval = 70 }; // cada 60 ticks se mourà la serp
+        int w_tauler = 0x0, celles = 24, ample, menjats = 0x0, record = int.Parse(File.ReadAllText("1j.txt"));
 
         List<Point> q = new List<Point>(); // Els punts de la serp
         DIR direccio = DIR.DRETA; // Direcció del cap
