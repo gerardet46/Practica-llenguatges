@@ -9,9 +9,8 @@ def fact(n):
 	else:
 		return n * fact(n - 1)
 
-r = 1
-c = 1
-darrer = r
+r = 1 # resultat
+c = 1 # enter per anar avançant a la sèrie (com un bucle del tipus for)
 
 dec = int(input("Precisió decimal: ")) # presició decimal que volem obtenir
 getcontext().prec = dec
