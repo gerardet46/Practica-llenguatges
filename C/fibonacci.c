@@ -1,10 +1,10 @@
 #pragma warning(disable : 4996)
 
 /*
-Aquest programa tracta de calcular nombres de Fibonacci enormes (per exemple, el n˙mero 10000)
-Ho fa de la manera tradicional, que Ès aquesta: an = a(n-1) + a(n-2)
+Aquest programa tracta de calcular nombres de Fibonacci enormes (per exemple, el n√∫mero 10000)
+Ho fa de la manera tradicional, que √©s aquesta: an = a(n-1) + a(n-2)
 
-Fixau-vos que el terme 10000 Ès
+Fixau-vos que el terme 10000 √©s
 336447648764317832666216120051075433103021484606800639065647699746
 800814421666623681555955136337340255820653326808361593737347904838
 652682630408924630564318873545443695598274916066020998841839338646
@@ -39,38 +39,38 @@ Fixau-vos que el terme 10000 Ès
 62430701794976171121233066073310059947366875
 
 (temps: < 2s)
-…s molt mÈs gran que unsigned long long. Per tant, aquest mËtode usa
-la suma de nombres en format string, mÈs aviat de dos punters a char, que poden tenir llongituts diferents.
-(El n˙mero de Fibonacci 100000, de 20899 digits, Ès calculat en menys de 20 segons
+√âs molt m√©s gran que unsigned long long. Per tant, aquest m√®tode usa
+la suma de nombres en format string, m√©s aviat de dos punters a char, que poden tenir llongituts diferents.
+(El n√∫mero de Fibonacci 100000, de 20899 digits, √©s calculat en menys de 20 segons
 
-Per aquesta raÛ, aquÌ Python Ès mÈs r‡pid i mÈs avorrit, perquË no tracta els n˙meros com a int, sinÛ com a digits individuals,
-mÈs o manco el que est‡ implementat en el mËtode char* sumar(...), perÚ mÈs ben parit
+Per aquesta ra√≥, aqu√≠ Python √©s m√©s r√†pid i m√©s avorrit, perqu√® no tracta els n√∫meros com a int, sin√≥ com a digits individuals,
+m√©s o manco el que est√† implementat en el m√®tode char* sumar(...), per√≤ m√©s ben parit
 */
 
 #include <stdio.h>
 #include <string.h>
 
 #define SZ_CH sizeof *char
-#define ARR 100000 // m‡xim nombre de digits
+#define ARR 100000 // m√†xim nombre de digits
 
-char r[ARR], n[ARR]; // r = resultat, n = terme n˙mero n
-char* sumar(char* max, char* min) { // sumam dos punters a char, sabent que un Ès major que l'altre
+char r[ARR], n[ARR]; // r = resultat, n = terme n√∫mero n
+char* sumar(char* max, char* min) { // sumam dos punters a char, sabent que un √©s major que l'altre
 	int l = strlen(max), l1 = strlen(min);
 
 	r[0] = 0;
 	int c = -1, cin = 0x0; // c -> index pel resulat, cin -> carry in
 
 	for (int i = 0; i < l; i++) {
-		int d = (max[l - i - 1] - 48) + cin + (l1 - i - 1 >= 0 ? min[l1 - i - 1] - 48 : 0); // restam 48 per que '0' = 48. Si max tÈ mÈs digits que min, haurem de comprovar-ho ambl1 - i - 1 >= 0 ?
+		int d = (max[l - i - 1] - 48) + cin + (l1 - i - 1 >= 0 ? min[l1 - i - 1] - 48 : 0); // restam 48 per que '0' = 48. Si max t√© m√©s digits que min, haurem de comprovar-ho ambl1 - i - 1 >= 0 ?
 		if (d > 9) { // Si la suma de digits supera 9, me'n duc una
 			d -= 10;
 			cin = 1;
 		}
 		else cin = 0;
-		r[++c] = d + 48; // expressam el resultat en car‡cters (sumam '0' = 48)
+		r[++c] = d + 48; // expressam el resultat en car√†cters (sumam '0' = 48)
 	}
 	
-	if (cin) r[++c] = '1'; // Si encara en duÔm un, l'afegim (ex: 8 + 5 = 13)
+	if (cin) r[++c] = '1'; // Si encara en du√Øm un, l'afegim (ex: 8 + 5 = 13)
 	r[++c] = 0; // Indicam el final del resultat afegint '\0'
 
 	// Revertim el resultat
@@ -79,7 +79,7 @@ char* sumar(char* max, char* min) { // sumam dos punters a char, sabent que un È
 	n[++c] = 0;
 	return n;
 }
-int fibc() {
+int main() {
 	char r[ARR], r1[ARR], r2[ARR], *temp;
 	while (1) {
 		int n = 0x0;
@@ -94,17 +94,17 @@ int fibc() {
 			strcpy(r, "1");
 			strcpy(r1, "1");
 			while (--n > 1) { // Farem n vegades
-				strcpy(r2, r); // L'anterior ser‡ el resultat antic
+				strcpy(r2, r); // L'anterior ser√† el resultat antic
 
-				temp = sumar(r, r1); // aquest Ès el nou resultat
-				strcpy(r, temp); // passam la informaciÛ del punter *temp a l'array r[ARR]
+				temp = sumar(r, r1); // aquest √©s el nou resultat
+				strcpy(r, temp); // passam la informaci√≥ del punter *temp a l'array r[ARR]
 
-				strcpy(r1, r2); // Ara el terme anterior de l'anterior ser‡ el que abans fou l'anterior
-				if ((inicial - n) % 100 == 0) printf("Terme %d\n", inicial - n); // Cada 1000 termes calculats, indicam el progrÈs
+				strcpy(r1, r2); // Ara el terme anterior de l'anterior ser√† el que abans fou l'anterior
+				if ((inicial - n) % 100 == 0) printf("Terme %d\n", inicial - n); // Cada 1000 termes calculats, indicam el progr√©s
 			}
-			printf("Terme %d de Fibonacci:\n%s", inicial, r); // Acabam el c‡lcul
+			printf("Terme %d de Fibonacci:\n%s", inicial, r); // Acabam el c√†lcul
 		}
-		// Tornam a comenÁar
+		// Tornam a comen√ßar
 		_getch();
 		system("cls");
 	}
