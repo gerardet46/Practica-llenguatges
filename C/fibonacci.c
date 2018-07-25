@@ -1,0 +1,112 @@
+#pragma warning(disable : 4996)
+
+/*
+Aquest programa tracta de calcular nombres de Fibonacci enormes (per exemple, el número 10000)
+Ho fa de la manera tradicional, que és aquesta: an = a(n-1) + a(n-2)
+
+Fixau-vos que el terme 10000 és
+336447648764317832666216120051075433103021484606800639065647699746
+800814421666623681555955136337340255820653326808361593737347904838
+652682630408924630564318873545443695598274916066020998841839338646
+527313000888302692356736131351175792974378544137521305205043477016
+022647583189065278908551543661595829872796829875106312005754287834
+532155151038708182989697916131278562650331954871402142875326981879
+620469360978799003509623022910263681314931952756302278376284415403
+605844025721143349611800230912082870460889239623288354615057765832
+712525460935911282039252853934346209042452489294039017062338889910
+858410651831733604374707379085526317643257339937128719375877468974
+799263058370657428301616374089691784263786242128352581128205163702
+980893320999057079200643674262023897831114700540749984592503606335
+609338838319233867830561364353518921332797329081337326426526339897
+639227234078829281779535805709936910491754708089318410561463223382
+174656373212482263830921032977016480547262438423748624114530938122
+065649140327510866433945175121615265453613331113140424368548051067
+658434935238369596534280717687753283482343455573667197313927462736
+291082106792807847180353291311767789246590899386354593278945237776
+744061922403376386740040213303432974969020283281459334188268176838
+930720036347956231171031012919531697946076327375892535307725523759
+437884345040677155557790564504430166401194625809722167297586150269
+684431469520346149322911059706762432685159928347098912847067408620
+085871350162603120719031720860940812983215810772820763531866246112
+782455372085323653057759564300725177443150515396009051686032203491
+632226408852488524331580515348496224348482993809050704834824493274
+537326245677558790891871908036620580095947431500524025327097469953
+187707243768259074199396322659841474981936092852239450397071654431
+564213281576889080587831834049174345562705202235648464951961124602
+683139709750693826487066132645076650746115126775227486215986425307
+112984411826226610571635150692600298617049454250474913781151541399
+415506712562711971332527636319396069028956502882686083622410820505
+62430701794976171121233066073310059947366875
+
+(temps: < 2s)
+És molt més gran que unsigned long long. Per tant, aquest mètode usa
+la suma de nombres en format string, més aviat de dos punters a char, que poden tenir llongituts diferents.
+(El número de Fibonacci 100000, de 20899 digits, és calculat en menys de 20 segons
+
+Per aquesta raó, aquí Python és més ràpid i més avorrit, perquè no tracta els números com a int, sinó com a digits individuals,
+més o manco el que està implementat en el mètode char* sumar(...), però més ben parit
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+#define SZ_CH sizeof *char
+#define ARR 100000 // màxim nombre de digits
+
+char r[ARR], n[ARR]; // r = resultat, n = terme número n
+char* sumar(char* max, char* min) { // sumam dos punters a char, sabent que un és major que l'altre
+	int l = strlen(max), l1 = strlen(min);
+
+	r[0] = 0;
+	int c = -1, cin = 0x0; // c -> index pel resulat, cin -> carry in
+
+	for (int i = 0; i < l; i++) {
+		int d = (max[l - i - 1] - 48) + cin + (l1 - i - 1 >= 0 ? min[l1 - i - 1] - 48 : 0); // restam 48 per que '0' = 48. Si max té més digits que min, haurem de comprovar-ho ambl1 - i - 1 >= 0 ?
+		if (d > 9) { // Si la suma de digits supera 9, me'n duc una
+			d -= 10;
+			cin = 1;
+		}
+		else cin = 0;
+		r[++c] = d + 48; // expressam el resultat en caràcters (sumam '0' = 48)
+	}
+	
+	if (cin) r[++c] = '1'; // Si encara en duïm un, l'afegim (ex: 8 + 5 = 13)
+	r[++c] = 0; // Indicam el final del resultat afegint '\0'
+
+	// Revertim el resultat
+	c = -1;
+	for (int i = strlen(r) - 1; i >= 0; i--) n[++c] = r[i];
+	n[++c] = 0;
+	return n;
+}
+int fibc() {
+	char r[ARR], r1[ARR], r2[ARR], *temp;
+	while (1) {
+		int n = 0x0;
+
+		printf("Calcular terme n de fibonacci (introduir n): "); // Demanam quin terme calcular
+		scanf("%d", &n);
+
+		int inicial = n;
+		if (n < 3) printf("\nTerme %d de Fibonacci: 1", n); // Si n < 3, no fa falta calcular-ho (1,1,2,3,5,...)
+		else {
+			// Resetejam els resultats
+			strcpy(r, "1");
+			strcpy(r1, "1");
+			while (--n > 1) { // Farem n vegades
+				strcpy(r2, r); // L'anterior serà el resultat antic
+
+				temp = sumar(r, r1); // aquest és el nou resultat
+				strcpy(r, temp); // passam la informació del punter *temp a l'array r[ARR]
+
+				strcpy(r1, r2); // Ara el terme anterior de l'anterior serà el que abans fou l'anterior
+				if ((inicial - n) % 100 == 0) printf("Terme %d\n", inicial - n); // Cada 1000 termes calculats, indicam el progrés
+			}
+			printf("Terme %d de Fibonacci:\n%s", inicial, r); // Acabam el càlcul
+		}
+		// Tornam a començar
+		_getch();
+		system("cls");
+	}
+	return 0;
+}
