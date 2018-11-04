@@ -12,3 +12,5 @@ Aquest repostori no pretèn crear aplicacions <b>útils per l'usuari</b>, sinó 
 - Interpretadors de llenguatges esotèrics, com Brainf***, aquest està implementat tant en C++ com C, i podem observar que C és molt més ràpid.
 
 <img src="http://gerry-proves-web.000webhostapp.com/GitHub%20portada.png">
+
+<b>Nota: </b>Els programes escrits amb C i C++ estan compilats amb Visual Studio, pel què és possible que s'hagin de canviar qualcunes línies de codi (com ara els macros #include). 
