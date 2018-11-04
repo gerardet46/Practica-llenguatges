@@ -213,7 +213,7 @@ int main() {
         // Cream un metrònom mentre no hagem d'escanejar res
 				clock_t ara = clock();
 				double div = (double)(ara - antic) / CLOCKS_PER_SEC;
-				if (div - floor(div) == 0) { // Per determinar si div és un enter
+				if (div - (int)div == 0) { // Per determinar si div és un enter
 					antic = ara;
 					while ((segons += div) >= 60) {
 						segons -= 60;
