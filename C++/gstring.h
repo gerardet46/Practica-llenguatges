@@ -165,11 +165,11 @@ namespace gstring {
   
   // Tot en minúscula i majúscula
 	void strtolower(str &in) {
-		for (int i = 0; i < in.length; i++)
+		for (int i = 0; i < in.length(); i++)
 			in[i] = tolower(in[i]);
 	}
 	void strtoupper(str &in) {
-		for (int i = 0; i < in.length; i++)
+		for (int i = 0; i < in.length(); i++)
 			in[i] = toupper(in[i]);
 	}
   
