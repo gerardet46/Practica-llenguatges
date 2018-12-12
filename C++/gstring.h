@@ -84,7 +84,7 @@ namespace gstring {
 		in = r;
 	}
   // Convertim un string en vector<string> (com un "split" en C#, "explode en PHP")
-	str_arr explode(str in, str chars) {
+	str_arr explode(str in, str chars, bool deixar = false) {
 		str_arr r = str_arr();
 		str temp("");
 		for (auto c : in) {
@@ -92,7 +92,7 @@ namespace gstring {
 			for (auto c1 : chars) {
 				if (c == c1) {
 					if (temp.length()) r.push_back(temp);
-					temp = "";
+					temp = deixar ? to_string(c) : "";
 					posar = false;
 					break;
 				}
@@ -103,9 +103,9 @@ namespace gstring {
 		return r;
 	}
 
-	str_arr explode(str in, char c) {
+	str_arr explode(str in, char c, bool deixar = false) {
 		auto a = to_string(c);
-		return explode(in, a);
+		return explode(in, a, deixar);
 	}
   
   // El mateix però a l'inrevés
