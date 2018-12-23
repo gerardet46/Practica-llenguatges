@@ -68,7 +68,7 @@ namespace gstring {
 
 		while (pos != string::npos) {
 			in.replace(pos, s1.size(), s2);
-			pos = in.find(s1, pos + s1.size());
+			pos = in.find(s1, pos + s2.size());
 		}
 	}
   // Convertim un string en vector<string> (com un "split" en C#, "explode en PHP")
