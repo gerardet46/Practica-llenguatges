@@ -64,24 +64,12 @@ namespace gstring {
 		in = r;
 	}
 	void str_replace(str &in, str s1, str s2) {
-		str r(""), temp("");
-		int pos = 0;
-		for (int i = 0; i < in.length(); i++) {
-			if (in[i] == s1[pos]) {
-				if (++pos >= s1.length()) {
-					r += s2;
-					pos = 0;
-					temp = "";
-				}
-				else temp += in[i];
-			}
-			else {
-				pos = 0;
-				r += temp + in[i];
-				temp = "";
-			}
+		size_t pos = in.find(s1);
+
+		while (pos != string::npos) {
+			in.replace(pos, s1.size(), s2);
+			pos = in.find(s1, pos + s1.size());
 		}
-		in = r;
 	}
   // Convertim un string en vector<string> (com un "split" en C#, "explode en PHP")
 	str_arr explode(str in, str chars, bool deixar = false) {
