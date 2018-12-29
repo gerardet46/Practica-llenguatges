@@ -9,7 +9,6 @@ A vegades la trobarem amb el signe "&", que vol dir que no torna res però es mo
 #include <vector>
 #include <string>
 
-// Es pot emprar per escurçar
 #define USA_STR using namespace gstring
 #define str string
 #define str_arr vector<string>
@@ -17,14 +16,12 @@ A vegades la trobarem amb el signe "&", que vol dir que no torna res però es mo
 using namespace std;
 
 namespace gstring {
-  // Convertim un caràcter qualssevol a un string
 	str to_string(char c) {
 		str r("");
 		r += c;
 		return r;
 	}
-  
-  // Esborram totes les coincidències de "c"
+
 	void strtrim(str &in, str c) {
 		str r = "";
 		for (auto ch : in) {
@@ -39,7 +36,6 @@ namespace gstring {
 		}
 		in = r;
 	}
-  // Fem el mateix amb char* i char
 	void strtrim(str &in, char* c) {
 		str chars(c);
 		strtrim(in, chars);
@@ -48,8 +44,7 @@ namespace gstring {
 		str chars = to_string(c);
 		strtrim(in, chars);
 	}
-  
-  // Codi per editar unes parts de l'string per unes altres
+
 	void str_replace(str &in, char c1, char c2) {
 		for (int i = 0; i < in.length(); i++) {
 			if (in[i] == c1) in[i] = c2;
@@ -71,7 +66,6 @@ namespace gstring {
 			pos = in.find(s1, pos + s2.size());
 		}
 	}
-  // Convertim un string en vector<string> (com un "split" en C#, "explode en PHP")
 	str_arr explode(str in, str chars, bool deixar = false) {
 		str_arr r = str_arr();
 		str temp("");
@@ -88,6 +82,7 @@ namespace gstring {
 			if (posar) temp += c;
 		}
 		if (temp.length()) r.push_back(temp);
+		if (!r.size()) r.push_back(in);
 		return r;
 	}
 
@@ -95,8 +90,7 @@ namespace gstring {
 		auto a = to_string(c);
 		return explode(in, a, deixar);
 	}
-  
-  // El mateix però a l'inrevés
+
 	str implode(str_arr in, str chars) {
 		string r("");
 		for (int i = 0; i < in.size(); i++) {
@@ -110,28 +104,11 @@ namespace gstring {
 		return implode(in, a);
 	}
 
-	// Per a comprobar si es troba un substring
-	bool troba(str in, str cerca) {
-		int pos = 0;
-		for (auto c : in) {
-			if (c == cerca[pos]) {
-				if (++pos >= cerca.length()) return true;
-			}
-			else pos = 0;
-		}
-		return false;
-	}
-  // Buscam l'índex en el què es troba una seqüència
+	int strpos(str in, str cerca);
+	bool troba(str in, str cerca) {	return strpos(in, cerca) >= 0;}
 	int strpos(str in, str cerca) {
-		int pos = 0, index = 0;
-		for (auto c : in) {
-			if (c == cerca[pos]) {
-				if (++pos >= cerca.length()) return index;
-			}
-			else pos = 0;
-			index++;
-		}
-		return -1;
+		size_t r = in.find(cerca);
+		return r == string::npos ? -1 : r;
 	}
 	int strpos(str in, char c) {
 		int pos = 0;
@@ -140,8 +117,7 @@ namespace gstring {
 		}
 		return - 1;
 	}
-  
-  // Retorna un substring, donat l'índex de partida i el nombre de caràcters a agafar
+	
 	str substring(str in, int index, int length) {
 		str r("");
 		while (r.length() < length) {
@@ -150,8 +126,7 @@ namespace gstring {
 		}
 		return r;
 	}
-  
-  // Tot en minúscula i majúscula
+
 	void strtolower(str &in) {
 		for (int i = 0; i < in.length(); i++)
 			in[i] = tolower(in[i]);
@@ -160,8 +135,7 @@ namespace gstring {
 		for (int i = 0; i < in.length(); i++)
 			in[i] = toupper(in[i]);
 	}
-  
-  // Comprovar si un string comença amb un text en concret
+
 	bool començaAmb(str in, str cerca) {
 		if (cerca.length() > in.length()) return false;
 		for (int i = 0; i < cerca.length(); i++) {
@@ -169,7 +143,6 @@ namespace gstring {
 		}
 		return true;
 	}
-  // Comprovar si un string acaba amb un text en concret
 	bool acabaAmb(str in, str cerca) {
 		if (cerca.length() > in.length()) return false;
 		for (int i = 0; i < cerca.length(); i++) {
