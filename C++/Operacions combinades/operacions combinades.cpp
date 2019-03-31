@@ -28,24 +28,24 @@
 
 USA_STR;
 
-// Redondejar números
+// Redondejar nÃºmeros
 double redondeig(double x, int dec) {
 	double fact = pow(10, dec);
 	return floor((x * fact) + .5) / fact;
 }
 
-// Canviar el color de la consola de manera més escurçada
+// Canviar el color de la consola de manera mÃ©s escurÃ§ada
 #ifdef _WIN32
 void color(int c) { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c); }
 #else
 void color(char* c) { cout << c; }
 #endif
 
-// Variables globals (pensava que n'hauria més, jeje)
+// Variables globals (pensava que n'hauria mÃ©s, jeje)
 int max_nivell = 0;
 int decimals = 6;
 
-// Constants, se poden afegir-ne més
+// Constants, se poden afegir-ne mÃ©s
 pair<str, double> constants[CONSTANTS] = {
 	make_pair("pi", 3.1415926535897932384),
 	make_pair("tau", 6.283185307179586476),
@@ -62,7 +62,7 @@ vector<double> historial;
 
 int func_length = 0;
 
-// Comprovar si falten o sobren parèntesis
+// Comprovar si falten o sobren parÃ¨ntesis
 int error(str op) {
 	int nivell = 0;
 	max_nivell = 0;
@@ -74,7 +74,7 @@ int error(str op) {
 	op = op + "?";
 }
 
-// Mètode per substituir signes repetits (cal tenir en comte que separam les operacions únicament per '+', no per '-')
+// MÃ¨tode per substituir signes repetits (cal tenir en comte que separam les operacions Ãºnicament per '+', no per '-')
 void signes(str &op) {
 	while (op.find("-+") < op.length() || op.find("++") < op.length() || op.find("--") < op.length()) {
 		str_replace(op, "-+", "-");
@@ -85,7 +85,7 @@ void signes(str &op) {
 	str_replace(op, "*+", "*");
 	str_replace(op, "/+", "/");
 	str_replace(op, ")(", ")*(");
-	if (començaAmb(op, "+")) op = substring(op, 1, op.length() - 1);
+	if (comenÃ§aAmb(op, "+")) op = substring(op, 1, op.length() - 1);
 }
 // Subtituim les constants d'una operacio
 void _constants(str &op) {
@@ -95,7 +95,7 @@ void _constants(str &op) {
 		str_replace(op, c.first, os.str());
 	}
 }
-// Mètode especialitzat pels conjunts
+// MÃ¨tode especialitzat pels conjunts
 void _conjunts(str &op) {
 	int nivell = 0;
 	str txt("");
@@ -129,9 +129,9 @@ void _conjunts(str &op) {
 	}
 }
 
-// Calcular operació sense parèntesis
+// Calcular operaciÃ³ sense parÃ¨ntesis
 double calcular(str op) {
-	auto a = explode(op, "+"); // Separam l'operació pel signe '+'
+	auto a = explode(op, "+"); // Separam l'operaciÃ³ pel signe '+'
 	double r = 0;
 	int pos1 = 0;
 	dicc<str, double> trobat;
@@ -218,9 +218,9 @@ double calcular(str op) {
 			}
 		}
 			
-		auto b = explode(t, "*/");
+		auto b = explode(t, "*/%");
 		vector<double> bi = vector<double>();
-		// Fem les multiplicacions i divisions de cada terme i les sumam, que serà el resultat
+		// Fem les multiplicacions i divisions de cada terme i les sumam, que serÃ  el resultat
 		try {
 			for (auto xb : b) {
 				bool constant = false;
@@ -246,13 +246,15 @@ double calcular(str op) {
 		for (auto sg : t) {
 			if (sg == '*') r_temp *= bi[++pos];
 			else if (sg == '/') r_temp /= bi[++pos];
+			else if (sg == '%') r_temp = (int)r_temp % (int)bi[++pos];
 		}
 		r += r_temp;
 	}
 	return r;
 }
-// El mateix però per operacions més complexes (sempre recurrirà a la funció simplificada per fer els càlculs)
+// El mateix perÃ² per operacions mÃ©s complexes (sempre recurrirÃ  a la funciÃ³ simplificada per fer els cÃ lculs)
 double calc(string op) {
+	str_replace(op, "mod", "%");
 	strtrim(op, ' ');
 	signes(op);
 	_conjunts(op);
@@ -315,7 +317,7 @@ __NO_ERROR:
 		return 0;
 	}
 
-	// Cercam si trobam qualque funció a l'operació
+	// Cercam si trobam qualque funciÃ³ a l'operaciÃ³
 	int f_length = func_length + 1;
 	while (--f_length) {
 		for (int i = 0; i < funcio.compte; i++) {
@@ -358,7 +360,7 @@ __NO_ERROR:
 		str_replace(op, n + "(", n + "*(");
 		str_replace(op, ")" + n, ")*" + n);
 	}
-	// Revisam si falten o sobren parèntesis
+	// Revisam si falten o sobren parÃ¨ntesis
 	int err = error(op);
 	if (err > 0) {
 		color(COL_ALERTA);
@@ -458,22 +460,22 @@ __NO_ERROR:
 				terme = op[k] + terme;
 			}
 		}
-		// Re-emplaaçar
+		// Re-emplaaÃ§ar
 		double v = tgamma(calc(terme) + 1);
 		str_replace(op, terme + "!", to_string(v));
 		return calc(op);
 	}
 
-	// Mentre no s'acabi l'operació, anirem agafant els parèntesis més interiors i executant-los per parts,
-	// aprofintant la funció calcular()
+	// Mentre no s'acabi l'operaciÃ³, anirem agafant els parÃ¨ntesis mÃ©s interiors i executant-los per parts,
+	// aprofintant la funciÃ³ calcular()
 	while (1) {
 		if (!troba(op, ")") && !troba(op, ")")) {
-			// Fora parèntesis
+			// Fora parÃ¨ntesis
 			double t = calcular(op);
 			if (invalid || _error) return 0;
 			return t;
 		}
-		// Separam les operacions simples a fer (seleccionam les que no tenguin parèntesis)
+		// Separam les operacions simples a fer (seleccionam les que no tenguin parÃ¨ntesis)
 		str_arr operacions = str_arr();
 		str actual("");
 		int nivell = 0;
@@ -517,6 +519,7 @@ double _cot(double x) { return 1 / tan(DEG_RAD(x)); }
 double _asin(double x) { return RAD_DEG(asin(x)); }
 double _acos(double x) { return RAD_DEG(acos(x)); }
 double _atan(double x) { return RAD_DEG(atan(x)); }
+double frac(double x) { return x - floor(x); }
 
 int main() {
 	// Afegim les funcions principals de les calculadores (ln, sin, cos, ...)
@@ -530,6 +533,7 @@ int main() {
 	funcio.afegir("sgn", sgn);
 	funcio.afegir("floor", floor);
 	funcio.afegir("ceil", ceil);
+	funcio.afegir("frac", frac);
 
 	funcio.afegir("sin", sin);
 	funcio.afegir("cos", cos);
@@ -628,7 +632,7 @@ BUCLE:
 			system("cls");
 			continue;
 		}
-		else if (començaAmb(temp_op, "decimals ")) { // adjustar la presició decimal
+		else if (comenÃ§aAmb(temp_op, "decimals ")) { // adjustar la presiciÃ³ decimal
 			op = substring(op, 9, op.length() - 9);
 			decimals = stoi(op);
 
@@ -640,14 +644,14 @@ BUCLE:
 			color(COL_RESET);
 		}
 		else if (temp_op == "tancar") break; // Acaba el programa
-		else if (temp_op == "ans") { // Accedim a l'historial (recordem que és un conjunt)
+		else if (temp_op == "ans") { // Accedim a l'historial (recordem que Ã©s un conjunt)
 			int i = 0;
 			for (auto x : historial) {
 				cout << "ans[" << ++i << "] = " << x << "\n";
 			}
 			cout << "\n";
 		}
-		else if (temp_op == "funcs") { // Per veure totes les funcions que tenim a disposició
+		else if (temp_op == "funcs") { // Per veure totes les funcions que tenim a disposiciÃ³
 			for (int i = 0; i < funcio.compte; i++)
 				cout << funcio[i].first << "\n";
 			cout << "\n";
@@ -707,7 +711,7 @@ BUCLE:
 			color(COL_RESET);
 			cout << "\n\n";
 		}
-		else if (començaAmb(temp_op, "supr ")) { // Esborram una en particular
+		else if (comenÃ§aAmb(temp_op, "supr ")) { // Esborram una en particular
 			op = substring(op, 5, op.length() - 5);
 			strtrim(op, ' ');
 			str linia, nou("");
@@ -842,7 +846,7 @@ BUCLE:
 			color(COL_RESET);
 		}
 		else if (troba(op, "==") || troba(op, ">") || troba(op, "<")) {
-			// Operadors de comparació
+			// Operadors de comparaciÃ³
 			string chr("==");
 
 			if (troba(op, ">=")) chr = ">=";
@@ -883,7 +887,7 @@ BUCLE:
 		}
 		else if (troba(op, "=")) {
 			while (troba(op, " =")) str_replace(op, " =", "=");
-			while (començaAmb(op, " ")) op = substring(op, 1, op.length() - 1);
+			while (comenÃ§aAmb(op, " ")) op = substring(op, 1, op.length() - 1);
 			auto s = explode(op, '=');
 
 			bool errors = false;
@@ -1104,7 +1108,7 @@ BUCLE:
 			}
 		}
 		else {
-			// En qualsevol altre cas, operam sens més
+			// En qualsevol altre cas, operam sens mÃ©s
 			double val = calc(op);
 			if (invalid) goto __ERROR;
 			if (_error && !(_error = false)) continue;
