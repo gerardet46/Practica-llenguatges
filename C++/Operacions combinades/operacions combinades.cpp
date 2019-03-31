@@ -14,7 +14,7 @@
 #include <Windows.h>
 
 #define COL_RESET 7
-#define COL_RESULTAT 2
+#define COL_RESULTAT 0xA
 #define COL_ALERTA 6
 #define COL_ERROR 12
 #else
@@ -562,6 +562,18 @@ int main() {
 		if (funcio[i].first.length() > func_length)
 			func_length = funcio[i].first.length();
 	}
+	
+#ifdef _WIN32
+	CONSOLE_FONT_INFOEX cfi;
+	cfi.cbSize = sizeof(cfi);
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 0;
+	cfi.dwFontSize.Y = 20;
+	cfi.FontFamily = FF_DONTCARE;
+	cfi.FontWeight = FW_NORMAL;
+	wcscpy_s(cfi.FaceName, L"Consolas");
+	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+#endif
 	
 	goto BUCLE;
 __ERROR:
