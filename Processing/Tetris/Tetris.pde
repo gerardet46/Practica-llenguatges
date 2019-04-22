@@ -156,7 +156,7 @@ void draw() {
     if (temps == 1) {
       if (xoc()) {
         int inc = -1;
-        while (!array0(actual.dades.fila(++inc)));
+        while (array0(actual.dades.fila(++inc)));
         
         if (actual.Y >= -inc) {
           afegirAlTauler();
