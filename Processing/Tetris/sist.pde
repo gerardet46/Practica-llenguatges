@@ -35,7 +35,6 @@ class Boto {
   }
 
   void actualitzar() {
-    // ERROR EN RELEASED
     if (mouseX - x < w && x <= mouseX && mouseY - defas - y < h && y + defas <= mouseY) {
       if (!mouse_over) {
         mouse_over = true;
