@@ -1,71 +1,75 @@
-float pixelX(float val) {
-  return map(val, -1, 1, 0, width);
-}
-float pixelY(float val) {
-  return map(val, -1, 1, height, 0);
+Punt[] punts = new Punt[10000];
+Perceptron cervell;
+
+float m = random(0.5, 4);
+float n = random(-0.5, 0.5);
+float f(float x) {
+  return m * x + n;
 }
 
-class Punt {
-  float x, y, b;
-  int t = 0;
-  
-  Punt() {
-    x = random(-1, 1);
-    y = random(-1, 1);
-    b = 1;
+void init() {
+  cervell = new Perceptron(3);
+  for (int i = 0; i < punts.length; i++) {
+    punts[i] = new Punt();
   }
-  Punt(float x, float y) {
-    this.x = x;
-    this.y = y;
-    this.b = 1;
-  }
-  void render() {
-    stroke(20);
-    if (y < f(x)) {
-      fill(70, 100, 150);
-      t = 1;
-    }
-    else {
-      fill(255);
-      t = -1;
-    }
-    
-    ellipse(pixelX(x), pixelY(y), 24, 24);
+  m = random(0.5, 4);
+  n = random(-0.5, 0.5);
+  totbe = false;
+}
+void entrenar() {
+  for (Punt p : punts) {
+    float[] coord = {p.x, p.y, p.b};
+    cervell.entrenar(coord, p.t);
   }
 }
 
-class Perceptron {
-  float[] pes;
-  float lr = 0.01;
+void setup() {
+  size(1400, 900);
+  init();
+  //frameRate(20);
+}
+
+boolean totbe = true;
+void draw() {
+  background(255);
   
-  float func(float x) {
-    return -x * pes[0] / pes[1] - pes[2] / pes[1];
-  }
-  
-  Perceptron(int N) {    
-    pes = new float[N];
-    for (int i = 0; i < N; i++) {
-      pes[i] = random(-1, 1);
+  totbe = true;
+  for (Punt p : punts) {
+    p.render();
+    
+    float[] coord = {p.x, p.y, p.b};
+    int r = cervell.comprova(coord);
+    
+    if (r != p.t) {
+      fill(200, 80, 80);
+      ellipse(pixelX(p.x), pixelY(p.y), 12, 12);
+      fill(200, 80, 80, 100);
+      ellipse(pixelX(p.x), pixelY(p.y), 48, 48);
+      totbe = false;
     }
   }
+
+  strokeWeight(6);
+  stroke(180, 180, 0);
+
+  float[] a = {-1, f(-1), 1, f(1)}; 
+  //line(pixelX(a[0]), pixelY(a[1]), pixelX(a[2]), pixelY(a[3]));
+
+  strokeWeight(4);
+  stroke(20);
+  cervell.linia();
+  if (!totbe) entrenar();
   
-  int comprova(float[] inp) {
-    float suma = 0;
-    for (int i = 0; i < inp.length; i++) suma += inp[i] * pes[i];
-    
-    return suma >= 0 ? 1 : -1;
+  strokeWeight(1);
+  if (totbe) {
+    fill(255, 100);
+    rect(0, 0, width, height);
+    fill(20);
+    textSize(108);
+    textAlign(CENTER);
+    text(String.format("y=%fx%s%f", -cervell.pes[0] / cervell.pes[1], cervell.pes[2] / cervell.pes[1] < 0 ? "+" : "", -cervell.pes[2] / cervell.pes[1]), width / 2, height / 2 - 48 / 2);
   }
-  
-  void entrenar(float[] inp, int r) {
-    int res = comprova(inp);
-    int error = r - res;
-    
-    for (int i = 0; i < pes.length; i++) {
-      pes[i] += error * inp[i] * lr;
-    }
-  }
-  void linia() {
-    float[] a = {-1, func(-1), 1, func(1)};   
-    line(pixelX(a[0]), pixelY(a[1]), pixelX(a[2]), pixelY(a[3]));
-  }
+}
+void mousePressed() {
+  init();
 }
