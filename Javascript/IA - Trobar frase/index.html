@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IA - Trobar frase</title>
+	<script src="../jquery.js"></script>
+	<script src="../p5.min.js"></script>
+	<script src="ia.js"></script>
+	<style>
+		#frase {
+			font-size: 48px;
+			max-width: calc(100% - 600px);
+		}
+		#millors {
+			font-size: 20px;
+		}
+		#adalt {
+			font-size: 32px;
+		}
+		#config {
+			position: absolute;
+			right: 48px;
+			top: 48px;
+		}
+		label {
+			font-size: 22px;
+		}
+		input {
+			font-size: 18px;
+		}
+		input[type="text"] {width: 400px;}
+	</style>
+</head>
+<body>
+	<p id="frase">Benvingut!! Trigarà una mica en trobar la frase.</p>
+	<p id="adalt"></p>
+	<p id="millors"></p>
+	<div id="config">
+		<label for="ifrase">Frase: </label>
+		<input type="text" value="Benvingut!! Trigarà una mica en trobar la frase." id="ifrase">
+		<br>
+		<label for="ipob">Població: </label>
+		<input type="text" value="10000" id="ipob">
+		<br>
+		<label for="imut">% mutació: </label>
+		<input type="text" value="1" id="imut">
+		<br>
+		<input type="submit" id="btn" value="Executar">
+	</div>
+	<script>
+		// Quan fem click reiniciam l'algorisme
+		$("#btn").click(() => {
+			$("#frase").text($("#ifrase").val());
+			poblacio = parseInt($("#ipob").val());
+			mut_rate = parseFloat($("#imut").val());
+			començar();
+			
+			fet = false;
+
+			$("#millors").text("");
+		})
+	</script>
+</body>
+</html>
