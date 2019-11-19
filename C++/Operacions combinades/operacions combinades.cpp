@@ -85,7 +85,7 @@ void signes(str &op) {
 	str_replace(op, "*+", "*");
 	str_replace(op, "/+", "/");
 	str_replace(op, ")(", ")*(");
-	if (començaAmb(op, "+")) op = substring(op, 1, op.length() - 1);
+	if (comencaAmb(op, "+")) op = substring(op, 1, op.length() - 1);
 }
 // Subtituim les constants d'una operacio
 void _constants(str &op) {
@@ -644,7 +644,7 @@ BUCLE:
 			system("cls");
 			continue;
 		}
-		else if (començaAmb(temp_op, "decimals ")) { // adjustar la presició decimal
+		else if (comencaAmb(temp_op, "decimals ")) { // adjustar la presició decimal
 			op = substring(op, 9, op.length() - 9);
 			decimals = stoi(op);
 
@@ -723,7 +723,7 @@ BUCLE:
 			color(COL_RESET);
 			cout << "\n\n";
 		}
-		else if (començaAmb(temp_op, "supr ")) { // Esborram una en particular
+		else if (comencaAmb(temp_op, "supr ")) { // Esborram una en particular
 			op = substring(op, 5, op.length() - 5);
 			strtrim(op, ' ');
 			str linia, nou("");
@@ -899,7 +899,7 @@ BUCLE:
 		}
 		else if (troba(op, "=")) {
 			while (troba(op, " =")) str_replace(op, " =", "=");
-			while (començaAmb(op, " ")) op = substring(op, 1, op.length() - 1);
+			while (comencaAmb(op, " ")) op = substring(op, 1, op.length() - 1);
 			auto s = explode(op, '=');
 
 			bool errors = false;

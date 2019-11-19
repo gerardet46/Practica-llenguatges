@@ -136,7 +136,7 @@ namespace gstring {
 			in[i] = toupper(in[i]);
 	}
 
-	bool començaAmb(str in, str cerca) {
+	bool comencaAmb(str in, str cerca) {
 		if (cerca.length() > in.length()) return false;
 		for (int i = 0; i < cerca.length(); i++) {
 			if (in[i] != cerca[i]) return false;
