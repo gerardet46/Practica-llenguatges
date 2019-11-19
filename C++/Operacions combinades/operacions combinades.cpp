@@ -1,7 +1,7 @@
 #include "gstring.h"
 #include "conjunts.h"
 
-#include <conio.h>
+//#include <conio.h>
 #include <iostream>
 #include <stdlib.h>
 #include <stdexcept>
@@ -712,7 +712,9 @@ BUCLE:
 		else if (temp_op == "supr_vars") { // Esborram totes les varialbes i les funcions
 			color(COL_ALERTA);
 			cout << "Segur que vols esborrar totes les variables/funcions desades? (s = si, altre tecla=no): ";
-			if (tolower(_getch()) == 's') {
+			char opt;
+			cin >> opt;
+			if (tolower(opt == 's') {
 				ofstream _arxiu("constants.txt");
 				_arxiu << "";
 				_arxiu.close();
