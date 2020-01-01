@@ -1,3 +1,13 @@
+/*
+Presionau 1 per jugar en primer torn envers l'IA, 2 per a què l'IA jugui primer i 3 per jugar entre dues persones físiques.
+ARXIUS:
+main.cpp -> arxiu principal del programa
+vars.h -> conté les definicións de fitxes, tauler i el mètode de verificació del tauler
+arbre.h -> simple classe per crear un arbre amb nodes (per a l'IA)
+cervell.h -> l'algoritme d'intel·ligència artificial
+Fitxa.h -> definició de la classe per a un jugador (té un cervell i una fitxa assignada)
+*/
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
