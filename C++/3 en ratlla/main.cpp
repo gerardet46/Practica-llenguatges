@@ -3,6 +3,7 @@
 #include <SFML/System.hpp>
 
 #include <iostream>
+#include <string>
 
 using namespace sf;
 #define W 800
@@ -79,6 +80,18 @@ void renderO(Vector2f pos, RenderWindow* joc, int _pos) {
 
 int main(int argc, const char** argv) {
     RenderWindow* joc = new RenderWindow(VideoMode(W, W), "3 en ratlla!", Style::Titlebar | Style::Close);
+
+    std::string ruta = argv[0], ruta1("");
+    int pos = 0, i = 0;
+    for (auto x : ruta) {
+        if (x == '/') pos = i;
+        i++;
+    }
+    for (int x = 0; x <= pos; x++) ruta1 += ruta[x];
+
+    Image icon;
+    icon.loadFromFile(ruta1 + "tic tac toe.png"); // File/Image/Pixel
+    joc->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     auto* J1 = new Fitxa(J::X, new JFisic());
     auto* J2 = new Fitxa(J::O, new IA());
