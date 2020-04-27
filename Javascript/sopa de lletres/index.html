@@ -1,0 +1,177 @@
+<style>
+	* {
+		font-size: 16px
+	}
+	table {
+		border: 2px solid #47f;
+		display: inline-flex;
+	}
+	table td {
+		padding: 4px 8px
+	}
+
+	input {
+		border: 2px solid #47f;
+		padding: 3px 5px;
+		color: #47f;
+		width: 200px;
+		margin-top: 30px;
+	}
+	p {
+		display: inline-grid;
+		margin-left: 20px;
+	}
+</style>
+
+<table id="tabla">
+
+</table>
+<p id="result"></p>
+<br>
+<input type="text" placeholder="Cerca" id="cerca">
+<button onclick="cercar()">Cerca</button>
+
+<script src="sopa.js"></script>
+<script>
+let l = sopa.length; // suposam que és quadrada
+
+function mostrar() {
+	let text = "";
+	for (let i = 0; i < l; i++) {
+		text += "<tr>";
+		for (let j = 0; j < l; j++) {
+			text += "<td id=\"" + (i.toString() + '.'+ j.toString()) + "\">" + sopa[i][j] + "</td>"
+		}
+		text += "</tr>";
+	}
+	document.getElementById("tabla").innerHTML = text;
+	return text;
+}
+mostrar();
+
+let vert = [], diag1 = [], diag2 = [];
+let numvert = [], numdiag1 = [], numdiag2 = [];
+
+let arr_diag1 = [], arr_diag2 = [], text2 = "", text3 = "";
+for (let i = 0; i < l; i++) {
+	let text1 = "";
+	let num1 = [];
+
+	for (let j = 0; j < l; j++) {
+		text1 += sopa[j][i];
+		num1.push(j.toString() + '.' + i.toString())
+	}
+	vert.push(text1)
+	numvert.push(num1)
+
+	arr_diag1.push(i.toString() + '.' + i.toString())
+	arr_diag2.push(i.toString() + '.' + (l - 1 - i).toString())
+	text2 += sopa[i][i];
+	text3 += sopa[i][l - 1 - i];
+}
+diag1 = [text2];
+diag2 = [text3];
+numdiag1.push(arr_diag1);
+numdiag2.push(arr_diag2);
+
+for (let i = 1; i < l - 1; i++) {
+	let x = i, y = 0;
+	let num1 = [], num2 = [], num3 = [], num4 = [];
+	text2 = "";
+	text3 = "";
+	let text4 = "", text5 = "";
+	while (x < l && y < l) {
+		text2 += sopa[x][y]
+		text3 += sopa[y][x]
+		text4 += sopa[x][l - 1 - y]
+		text5 += sopa[y][l - 1 - x]
+
+		num1.push(x.toString() + '.' +  y.toString())
+		num2.push(y.toString() + '.' +  x.toString())
+		num3.push(x.toString() + '.' +  (l - 1 - y).toString())
+		num4.push(y.toString() + '.' +  (l - 1 - x).toString())
+
+		x++;
+		y++;
+	}
+	diag1.push(text2);
+	diag1.push(text3);
+	numdiag1.push(num1);
+	numdiag1.push(num2);
+
+	diag2.push(text4);
+	diag2.push(text5);
+	numdiag2.push(num3);
+	numdiag2.push(num4);
+}
+
+function reverse(str) {
+	return str.split("").reverse().join("");
+}
+
+function comprovar(paraula, str, nums, color) {
+	let x = str.search(paraula);
+	if (x >= 0) {
+		for (let i = 0; i < paraula.length; i++) {
+			document.getElementById(nums[i + x]).innerHTML = document.getElementById(nums[i + x]).innerHTML.bold();
+			document.getElementById(nums[i + x]).style.color = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")"
+			document.getElementById(nums[i + x]).style.background = "rgb(" + (color[0] + 60) + "," + (color[1] + 60) + "," + (color[2] + 60) + ")"
+		}
+		return true;
+	}
+	return false;
+}
+function comprovar_tot(paraula, str, nums, color) {
+	if (comprovar(paraula, str, nums, color)) return true;
+
+	let str1 = reverse(paraula);
+	if (comprovar(str1, str, nums, color)) return true;
+	return false;
+}
+
+function cercar(paraul) {
+	let input = document.getElementById("cerca").value;
+	let color = [Math.random() * 150 + 50, Math.random() * 150 + 50, Math.random() * 150 + 50]
+
+	if (paraul !== undefined) input = paraul;
+	input = input.toUpperCase();
+	let trobat = false;
+	for (let i = 0; i < l; i++) {
+		let arr = [];
+		for (let j = 0; j < l; j++) arr.push(i.toString() + '.' + j.toString())
+
+		trobat = comprovar_tot(input, sopa[i], arr, color)
+		if (trobat) break;
+
+		trobat = comprovar_tot(input, vert[i], numvert[i], color)
+		if (trobat) break;
+	}
+
+	if (!trobat) {
+		for (let i = 0; i < diag1.length; i++) {
+			trobat = comprovar_tot(input, diag1[i], numdiag1[i], color)
+			if (trobat) break;
+
+			trobat = comprovar_tot(input, diag2[i], numdiag2[i], color)
+			if (trobat) break;
+		}
+	}
+
+	if (!trobat) {
+		color = [200, 20, 20];
+		input += " (No s'ha trobat)";
+	}
+	let add = '<span style="color: rgb(' + color[0] + "," + color[1] + "," + color[2] +')">' + input + '<span><br>'
+	document.getElementById("result").innerHTML += add;
+	document.getElementById("cerca").value = ""
+	document.getElementById("cerca").focus();
+}
+
+function llista(){
+for (let x of paraules) {
+	console.log(x)
+	cercar(x)
+}
+}
+llista();
+</script>
