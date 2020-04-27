@@ -1,3 +1,4 @@
+<!-- un poc d'estils -->
 <style>
 	* {
 		font-size: 16px
@@ -23,57 +24,68 @@
 	}
 </style>
 
+<!-- sa tabla per mostrar sa sopa i ón són ses paraules -->
 <table id="tabla">
 
 </table>
+<!-- per mostrar ses paraules cercades -->
 <p id="result"></p>
 <br>
+<!-- per cercar noves paraules -->
 <input type="text" placeholder="Cerca" id="cerca">
 <button onclick="cercar()">Cerca</button>
 
+<!-- agafam sa sopa de lletres -->
 <script src="sopa.js"></script>
 <script>
 let l = sopa.length; // suposam que és quadrada
 
+// mostram sa sopa de lletres (sense colorejar ocurrències)
 function mostrar() {
 	let text = "";
 	for (let i = 0; i < l; i++) {
 		text += "<tr>";
+		// per cada element farem una altra fila a sa tabla
 		for (let j = 0; j < l; j++) {
+			// cada lletra de sa fila serà una cel·la de sa tabla
 			text += "<td id=\"" + (i.toString() + '.'+ j.toString()) + "\">" + sopa[i][j] + "</td>"
 		}
 		text += "</tr>";
 	}
+	// renderitzam sa tabla
 	document.getElementById("tabla").innerHTML = text;
 	return text;
 }
+// mostam sa sopa de lletres
 mostrar();
 
-let vert = [], diag1 = [], diag2 = [];
-let numvert = [], numdiag1 = [], numdiag2 = [];
+let vert = [], diag1 = [], diag2 = []; // aquí guardarem ses llistes de seqüències verticals i diagonals
+let numvert = [], numdiag1 = [], numdiag2 = []; // i aquí ses seves posicions, de manera que un element de ses d'adalt correspongui un d'aquests
 
 let arr_diag1 = [], arr_diag2 = [], text2 = "", text3 = "";
 for (let i = 0; i < l; i++) {
 	let text1 = "";
 	let num1 = [];
-
+	// agafam ses verticals
 	for (let j = 0; j < l; j++) {
 		text1 += sopa[j][i];
 		num1.push(j.toString() + '.' + i.toString())
 	}
 	vert.push(text1)
 	numvert.push(num1)
-
+	// agafam ses diagonals principals (2 sentits)
 	arr_diag1.push(i.toString() + '.' + i.toString())
 	arr_diag2.push(i.toString() + '.' + (l - 1 - i).toString())
 	text2 += sopa[i][i];
 	text3 += sopa[i][l - 1 - i];
 }
+// afegim ses diagonals principals
 diag1 = [text2];
 diag2 = [text3];
 numdiag1.push(arr_diag1);
 numdiag2.push(arr_diag2);
 
+// agafam ses diagonals restants
 for (let i = 1; i < l - 1; i++) {
 	let x = i, y = 0;
 	let num1 = [], num2 = [], num3 = [], num4 = [];
@@ -105,13 +117,15 @@ for (let i = 1; i < l - 1; i++) {
 	numdiag2.push(num4);
 }
 
+// mètode per girar un string
 function reverse(str) {
 	return str.split("").reverse().join("");
 }
 
+// comprovam si una paraula està a una seqüència (str), si hi és li posarem un color a sa tabla
 function comprovar(paraula, str, nums, color) {
 	let x = str.search(paraula);
-	if (x >= 0) {
+	if (x >= 0) { // en cas de coincidència
 		for (let i = 0; i < paraula.length; i++) {
 			document.getElementById(nums[i + x]).innerHTML = document.getElementById(nums[i + x]).innerHTML.bold();
 			document.getElementById(nums[i + x]).style.color = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")"
@@ -121,6 +135,7 @@ function comprovar(paraula, str, nums, color) {
 	}
 	return false;
 }
+// el mateix però també amb sa paraula girada, per si surt a s'anendret
 function comprovar_tot(paraula, str, nums, color) {
 	if (comprovar(paraula, str, nums, color)) return true;
 
@@ -129,6 +144,8 @@ function comprovar_tot(paraula, str, nums, color) {
 	return false;
 }
 
+// comprovam a cada llista i si ho troba aturarà de cercar
+// si no ho troba, posarà sa paraula en vermell
 function cercar(paraul) {
 	let input = document.getElementById("cerca").value;
 	let color = [Math.random() * 150 + 50, Math.random() * 150 + 50, Math.random() * 150 + 50]
@@ -167,11 +184,13 @@ function cercar(paraul) {
 	document.getElementById("cerca").focus();
 }
 
+// en cas que hagem configurat paraules per cercar a sopa.js
 function llista(){
 for (let x of paraules) {
 	console.log(x)
 	cercar(x)
 }
 }
+// les cercam
 llista();
 </script>
