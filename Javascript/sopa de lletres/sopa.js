@@ -1,5 +1,6 @@
+// exemple de sopa de lletres
 let sopa = [
-    "UGWAQVANFISBENA",
+    	"UGWAQVANFISBENA",
 	"CCTACPGBFPBLFLB",
 	"OCERAATCOJAJZWY",
 	"NTTQBNRINCWREVB",
@@ -15,7 +16,7 @@ let sopa = [
 	"DEAMBULATORIONC",
 	"GYCRUCEROLWLVBB"
 ]
-
+// paraules per cercar a sa sopa
 let paraules = [
 	"ABOCINADO", "ARPIA", "BESTIARIO", "CIMBORRIO",
 	"CONTRAFUERTE","DEAMBULATORIO", "PANTOCRATOR", "TETRAMORFOS",
